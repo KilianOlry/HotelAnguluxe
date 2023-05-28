@@ -3,10 +3,10 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'app-hotl-list',
     templateUrl: './hotl-list.component.html',
-    styleUrls: ['./hotl-list.component.css'],
 })
 export class HotlListComponent {
     public title = "Liste d'hôtel";
+    public showBadge: boolean | undefined;
 
     public hotels: any[] = [
         {
@@ -42,4 +42,8 @@ export class HotlListComponent {
             rating: 2.5,
         },
     ];
+
+    public toggleIsNewBadge(): void {
+        this.showBadge = !this.showBadge;
+    }
 }
