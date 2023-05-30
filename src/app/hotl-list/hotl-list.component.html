@@ -4,6 +4,10 @@
     <button (click)="toggleIsNewBadge()"
         class=" ml-3 rounded-md bg-green-500 px-6 py-2 font-semibold text-green-100 shadow-md">
         <span>{{ showBadge ? 'Masquer les nouveautés' : 'Afficher les nouveautés'}}</span></button>
+        
+        <input type="text" [ngModel]="hostelFilter" [(ngModel)]="hostelFilter">
+        <span>Filtre actuel : {{hostelFilter}}</span>
+
     <div class='flex flex-wrap gap-8 mt-5 ml-5'>
 
         <div *ngFor=" let hotel of hotels "
@@ -16,7 +20,7 @@
                 <div class='p-4 sm:p-6'>
                     <p class='font-bold text-gray-700 text-[20px] leading-7 mb-2'>{{hotel.hotelName}}</p>
                     <div>
-                        <p class='text-[#3C3C4399] text-[17px] mr-2'>Prix {{hotel.price}}</p>
+                        <p class='text-[#3C3C4399] text-[17px] mr-2'>Prix {{hotel.price | currency: 'EUR' : '€' : '1.2-2' : 'fr'}}</p>
                     </div>
                     <p class='text-[#7C7C80] font-[15px] mt-4 text-[15px]'>{{hotel.description}}</p>
 
