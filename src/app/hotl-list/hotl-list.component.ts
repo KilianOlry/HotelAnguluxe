@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IHotel } from './hotels';
 
 @Component({
     selector: 'app-hotl-list',
     templateUrl: './hotl-list.component.html',
 })
-export class HotlListComponent {
+export class HotlListComponent implements OnInit {
     public title = "Liste d'hôtel";
     public showBadge: boolean | undefined;
 
@@ -39,10 +39,40 @@ export class HotlListComponent {
             imageUrl: 'assets/img/window.jpg',
         },
     ];
-
-    public hostelFilter = 'mot';
-
     public toggleIsNewBadge(): void {
         this.showBadge = !this.showBadge;
     }
+
+    // Filtre
+
+    private _hotelFilter = 'mot';
+
+    public filteredHotels: IHotel[] = [];
+    ngOnInit(): void {
+        this.filteredHotels = this.hotels;
+        this.hotelFilter = '';
+
+    }
+
+
+    public get hotelFilter(): string {
+        return this._hotelFilter
+    }
+
+
+    public set hotelFilter(filter: string) {
+        this._hotelFilter = filter;
+        this.filteredHotels = this.hotelFilter ? this.filterHotels(this.hotelFilter) : this.hotels;
+    }
+
+    private filterHotels(critere: string): IHotel[] {
+        critere = critere.toLocaleLowerCase();
+
+        const res = this.hotels.filter(
+            (hotel: IHotel) => hotel.hotelName.toLocaleLowerCase().indexOf(critere) !== -1
+        );
+
+        return res;
+    }
+
 }

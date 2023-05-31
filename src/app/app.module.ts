@@ -7,13 +7,14 @@ import { HotlListComponent } from './hotl-list/hotl-list.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FormsModule } from '@angular/forms';
 import { NgLocaleLocalization, registerLocaleData } from '@angular/common';
+import { ReplaceComma } from './shared/pipies/replace-comma.pipe';
 
 
 registerLocaleData(localeFr, 'fr')
 @NgModule({
-    declarations: [AppComponent, HotlListComponent, SidebarComponent],
+    declarations: [AppComponent, HotlListComponent, SidebarComponent, ReplaceComma],
     imports: [BrowserModule, AppRoutingModule, FormsModule],
     providers: [],
     bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
